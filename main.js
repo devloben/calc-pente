@@ -15,18 +15,19 @@ distance.addEventListener('input', function() {
     validDistance(this)
 })
 
-const btnCalculPente = document.getElementById('btn-calcul-pente')
+const btnCalculPentePourcent = document.getElementById('btn-calcul-pente-pourcent')
 
 let formulaire = document.getElementById('formulaire')
 formulaire.addEventListener('input', function() {
 
     if (validDepart(depart) && validArrivee(arrivee) && validDistance(distance)) {
-        btnCalculPente.classList.add('btn-calcul-pente-ok')
+        btnCalculPentePourcent.classList.add('btn-calcul-pente-ok')
     } else {
-        btnCalculPente.classList.remove('btn-calcul-pente-ok')
+        btnCalculPentePourcent.classList.remove('btn-calcul-pente-ok')
     }
 })
 
+/* Calcule de la pente en % */
 formulaire.addEventListener('input', function(e) {
     e.preventDefault()
 
@@ -35,7 +36,7 @@ formulaire.addEventListener('input', function(e) {
         // const pente = ((depart.value - arrivee.value) / distance.value) * 100
         // const affichagePente = document.querySelector('.affichage-pente')
         // affichagePente.innerText = `Pente à ${pente.toFixed(2)} %`
-        btnCalculPente.value = `Pente à ${pente.toFixed(2)} %`
+        btnCalculPentePourcent.value = `Pente à ${pente.toFixed(2)} %`
         return true
     } 
 })
