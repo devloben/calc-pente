@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calcul de pente</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <form id="formulaire">
+             <div class="saisie">
+                 <input type="number" name='altDepart' id="alt-depart" placeholder="Altitude départ (m)" step="0.01">
+            
+                 <span id="msg-err-depart" style="display: block;">Haut</span>
+                </div>
+                <div class="saisie">
+                    <input type="number" name='altArrivee' id="alt-arrivee" placeholder="Altitude arrivée (m)" step="0.01" >
+                    <span id="msg-err-arrivee" style="display: block;">Bas</span>
+                </div>
+                <div class="saisie">
+                    <input type="number" name='distance' id="distance" placeholder="Distance (m)" step="0.01">
+                    <span id="msg-err-distance" style="display: block;">Distance</span>
+             </div>
+             <p class="affichage-pente"></p>
+             
+             <input type="submit" value="Calcul pente" id="btn-calcul-pente">
+         </form>
+
+        <h1>Géo</h1>
+        <div class="localisation">
+            <p id='p1'></p>
+            <p id='p2'></p>
+        </div>
+        <div class="altitude">
+            <p id='p3'></p>
+            <p id='p4'></p>
+        </div>
+        
+    </div>
+
+    <script src="main.js"></script>
+</body>
+</html>
