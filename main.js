@@ -1,97 +1,138 @@
-let regEx = /^[1-9]+/
+const inputsValidity = {
+  altitude1: false,
+  altitude2: false,
+  distance: false,
+};
 
-let depart = document.getElementById('alt-depart')
-depart.addEventListener('input', function() {
-    validDepart(this)
-})
+const container = document.querySelector(".container");
+const form = document.querySelector("form");
+form.addEventListener("submit", handleForm);
 
-let arrivee = document.getElementById('alt-arrivee')
-arrivee.addEventListener('input', function() {
-    validArrivee(this)
-})
+let isAnimating = false;
+function handleForm(e) {
+  e.preventDefault();
 
-let distance = document.getElementById('distance')
-distance.addEventListener('input', function() {
-    validDistance(this)
-})
+  const keys = Object.keys(inputsValidity);
+  const failedInputs = keys.filter((key) => !inputsValidity[key]);
 
-const btnCalculPentePourcent = document.getElementById('btn-calcul-pente-pourcent')
+  if (failedInputs.length && !isAnimating) {
+    isAnimating = true;
+    container.classList.add("shake");
 
-let formulaire = document.getElementById('formulaire')
-formulaire.addEventListener('input', function() {
+    setTimeout(() => {
+      container.classList.remove("shake");
+      isAnimating = false;
+    }, 400);
 
-    if (validDepart(depart) && validArrivee(arrivee) && validDistance(distance)) {
-        btnCalculPentePourcent.classList.add('btn-calcul-pente-ok')
-    } else {
-        btnCalculPentePourcent.classList.remove('btn-calcul-pente-ok')
-    }
-})
-
-/* Calcule de la pente en % */
-formulaire.addEventListener('input', function(e) {
-    e.preventDefault()
-
-    if (validDepart(depart) && validArrivee(arrivee) && validDistance(distance)) {
-        const pente = Math.abs(((depart.value - arrivee.value) / distance.value) * 100)
-        // const pente = ((depart.value - arrivee.value) / distance.value) * 100
-        // const affichagePente = document.querySelector('.affichage-pente')
-        // affichagePente.innerText = `Pente à ${pente.toFixed(2)} %`
-        btnCalculPentePourcent.value = `Pente à ${pente.toFixed(2)} %`
-        return true
-    } 
-})
-
-let validDepart = function(saisieDepart) {
-    let testDepart = regEx.test(saisieDepart.value)
-    let msgDepart = document.getElementById('msg-err-depart')
-
-    if (testDepart) {
-        // msgDepart.style.display = 'none'
-        return true
-        } else {
-        // msgDepart.style.display = 'block'
-        return false
-        }
+    failedInputs.forEach((input) => {
+      const index = keys.indexOf(input);
+      showValidation({ index: index, validation: false });
+    });
+  } else {
+    calculateSlopePercent();
+    calculateSlopeDegree();
+  }
 }
 
-let validArrivee = function(saisieArrivee) {
-    let testArrivee = regEx.test(saisieArrivee.value)
-    let msgArrivee = document.getElementById('msg-err-arrivee')
+const regEx = /^[1-9]\d*$/;
+const validationTexts = document.querySelectorAll(".error-msg");
 
-    if (testArrivee) {
-        // msgArrivee.style.display = 'none'
-        return true
-        } else {
-        // msgArrivee.style.display = 'block'
-        return false
-        }
+function showValidation({ index, validation }) {
+  if (validation) {
+    if (validationTexts[index]) validationTexts[index].style.display = "none";
+  } else {
+    if (validationTexts[index]) validationTexts[index].style.display = "block";
+  }
 }
 
-let validDistance = function(saisieDistance) {
-    let testDistance = regEx.test(saisieDistance.value)
-    let msgDistance = document.getElementById('msg-err-distance')
+const altitude1Input = document.querySelector(
+  ".input-group:nth-child(1) input"
+);
 
-    if (testDistance) {
-        // msgDistance.style.display = 'none'
-        return true
-        } else {
-        // msgDistance.style.display = 'block'
-        return false
-        }
+altitude1Input.addEventListener("blur", altitude1Validation);
+altitude1Input.addEventListener("input", altitude1Validation);
+
+function altitude1Validation() {
+  if (regEx.test(altitude1Input.value)) {
+    showValidation({ index: 0, validation: true });
+    inputsValidity.altitude1 = true;
+  } else {
+    showValidation({ index: 0, validation: false });
+    inputsValidity.altitude1 = false;
+  }
 }
 
-function coordonnees(pos) {
-    let crd = pos.coords;
-  
-    let latitude = crd.latitude;
-    let longitude = crd.longitude;
-    let altitude = crd.altitude;
-    let precisionAltitude = crd.altitudeAccuracy;
-    
-    document.getElementById('p1').innerHTML= 'Lat : ' + latitude.toFixed(2);
-    document.getElementById('p2').innerHTML= 'Lon : ' + longitude.toFixed(2);
-    document.getElementById('p3').innerHTML= 'Altitude : ' + altitude.toFixed(2) + ' m';
-    document.getElementById('p4').innerHTML= 'Précision : ' + precisionAltitude;
+const altitude2Input = document.querySelector(
+  ".input-group:nth-child(2) input"
+);
+
+altitude2Input.addEventListener("blur", altitude2Validation);
+altitude2Input.addEventListener("input", altitude2Validation);
+
+function altitude2Validation() {
+  if (regEx.test(altitude2Input.value)) {
+    showValidation({ index: 1, validation: true });
+    inputsValidity.altitude2 = true;
+  } else {
+    showValidation({ index: 1, validation: false });
+    inputsValidity.altitude2 = false;
+  }
 }
 
-navigator.geolocation.getCurrentPosition(coordonnees);
+const distanceInput = document.querySelector(".input-group:nth-child(3) input");
+
+distanceInput.addEventListener("blur", distanceValidation);
+distanceInput.addEventListener("input", distanceValidation);
+
+function distanceValidation() {
+  if (regEx.test(distanceInput.value)) {
+    showValidation({ index: 2, validation: true });
+    inputsValidity.distance = true;
+  } else {
+    showValidation({ index: 2, validation: false });
+    inputsValidity.distance = false;
+  }
+}
+
+// Affichage de la pente en %
+const slopePercent = document.querySelector("#slope-percent");
+
+function calculateSlopePercent() {
+  let highAltitude = 0;
+  let lowAltitude = 0;
+  if (altitude1Input.value > altitude2Input.value) {
+    highAltitude = parseInt(altitude1Input.value);
+    lowAltitude = parseInt(altitude2Input.value);
+  } else {
+    highAltitude = parseInt(altitude2Input.value);
+    lowAltitude = parseInt(altitude1Input.value);
+  }
+
+  let deltaAltitude = highAltitude - lowAltitude;
+
+  let slopePercentResult = (deltaAltitude / distanceInput.value) * 100;
+
+  slopePercent.textContent = `${slopePercentResult.toFixed(1)} %`;
+}
+
+// Affichage de la pente en °
+const slopeDegree = document.querySelector("#slope-degree");
+
+function calculateSlopeDegree() {
+  let highAltitude = 0;
+  let lowAltitude = 0;
+  if (altitude1Input.value > altitude2Input.value) {
+    highAltitude = parseInt(altitude1Input.value);
+    lowAltitude = parseInt(altitude2Input.value);
+  } else {
+    highAltitude = parseInt(altitude2Input.value);
+    lowAltitude = parseInt(altitude1Input.value);
+  }
+
+  let deltaAltitude = highAltitude - lowAltitude;
+
+  let slopeRadiansResult = Math.atan(deltaAltitude / distanceInput.value);
+  let slopeDegreeResult = slopeRadiansResult * (180 / Math.PI);
+
+  slopeDegree.textContent = `${slopeDegreeResult.toFixed(1)} °`;
+}

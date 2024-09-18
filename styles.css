@@ -1,87 +1,106 @@
-* {
-    box-sizing: border-box;
-    font-family: 'Work Sans', sans-serif;
+*,
+::before,
+::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
 body {
-    margin: 0 auto;
+  min-height: 100vh;
+  font-family: "Work Sans", sans-serif;
+  padding: clamp(20px, 5vw, 30px) 10px;
 }
 
 .container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 5px;
+}
+.container.shake {
+    animation: shake 0.4s
+}
+@keyframes shake {
+    33% {
+        transform: translateX(-5px)
+    }
+    66% {
+        transform: translateX(5px)
+    }
 }
 
-#formulaire {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-radius: 10px;
-    padding: 20px;
-    gap: 30px;
-    width: 300px;  
-    
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px;
+  gap: 30px;
+  width: 320px;
 }
 
-.saisie input {
-    text-align: center;
-    width: 250px;
-    border: none;
-    height: 40px;
-    font-size: 1.2em;
-    border-radius: 5px;
-    box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
-    
+.input-group input {
+  text-align: center;
+  width: 280px;
+  border: none;
+  height: 40px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
 }
 
-#btn-calcul-pente-pourcent {
-    text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.3);
-    color: #646464;
-    width: 100%;
-    border: none;
-    height: 40px;
-    font-size: 1.2em;
-    border-radius: 5px;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09); 
-    margin-top: -30px;
+.input-group input:focus {
+  outline: none;
+}
+
+.btn-calcul-pente {
+  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.3);
+  color: #646464;
+  width: 100%;
+  border: none;
+  height: 40px;
+  font-size: 1.2em;
+  border-radius: 5px;
+  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+  margin-top: -30px;
+}
+
+.btn-calcul-pente:first-of-type {
+  margin-top: 5px;
+  margin-bottom: 8px;
 }
 
 .btn-calcul-pente-ok {
-    background-color: rgb(217, 250, 217);
+  background-color: rgb(217, 250, 217);
 }
 
+.error-msg {
+  color: crimson;
+  font-size: 0.8em;
+  margin-bottom: -10px;
+  display: none;
+}
 
-#formulaire p {
-    color: red;
-    font-size: 1.2;
-    margin-top: 0;
-    margin-bottom: 0;
+.input-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* #formulaire p {
+  color: red;
+  font-size: 1.2;
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .localisation {
-    display: flex;
-    gap: 20px;
+  display: flex;
+  gap: 20px;
 }
 .altitude {
-    display: flex;
-    gap: 20px;
-}
-
-#alt-depart-erreur, 
-#alt-arrivee-erreur, 
-#distance-erreur, 
-#msg-err-depart, 
-#msg-err-arrivee, 
-#msg-err-distance {
-    color: blue;
-    font-size: 0.8em;
-    margin-bottom: -10px;
-}
-
-.saisie {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
+  display: flex;
+  gap: 20px;
+} */
