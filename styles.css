@@ -99,6 +99,7 @@ form button:hover {
 }
 
 .slope-percent,
-.slope-degree{
+.slope-degree,
+.glide-ratio {
   font-weight: 600;  
 }
