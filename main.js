@@ -4,6 +4,7 @@ const inputsValidity = {
   distance: false,
 };
 
+// Validation du formulaire
 const container = document.querySelector(".container");
 const form = document.querySelector("form");
 form.addEventListener("submit", handleForm);
@@ -31,9 +32,22 @@ function handleForm(e) {
   } else {
     calculateSlopePercent();
     calculateSlopeDegree();
+    showResults()
   }
 }
 
+// Affichage du résultat
+const titleResults = document.querySelector(".title-results");
+const slopePercent = document.querySelector(".slope-percent");
+const slopeDegree = document.querySelector(".slope-degree");
+
+function showResults(){
+  titleResults.style.display = "inline"
+  slopePercent.textContent = `${calculateSlopePercent()}% ou `
+  slopeDegree.textContent = `${calculateSlopeDegree()}°`
+}
+
+//Validation des champs
 const regEx = /^[1-9]\d*$/;
 const validationTexts = document.querySelectorAll(".error-msg");
 
@@ -94,9 +108,7 @@ function distanceValidation() {
   }
 }
 
-// Affichage de la pente en %
-const slopePercent = document.querySelector("#slope-percent");
-
+// Calcul de la pente
 function calculateSlopePercent() {
   let highAltitude = 0;
   let lowAltitude = 0;
@@ -112,11 +124,8 @@ function calculateSlopePercent() {
 
   let slopePercentResult = (deltaAltitude / distanceInput.value) * 100;
 
-  slopePercent.textContent = `${slopePercentResult.toFixed(1)} %`;
+  return slopePercentResult.toFixed(1)
 }
-
-// Affichage de la pente en °
-const slopeDegree = document.querySelector("#slope-degree");
 
 function calculateSlopeDegree() {
   let highAltitude = 0;
@@ -134,5 +143,5 @@ function calculateSlopeDegree() {
   let slopeRadiansResult = Math.atan(deltaAltitude / distanceInput.value);
   let slopeDegreeResult = slopeRadiansResult * (180 / Math.PI);
 
-  slopeDegree.textContent = `${slopeDegreeResult.toFixed(1)} °`;
+  return slopeDegreeResult.toFixed(1)
 }

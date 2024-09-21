@@ -9,18 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <div class="container">
+      <h2>Inclinaison d'une <span>pente</span></h2>
       <form>
         <div class="input-group">
+          <label for="altitude1">Altitude 1 (m)</label>
           <input
             autocomplete="off"
             id="altitude1"
-            placeholder="Altitude haut (m)"
+            placeholder="Saisissez un nombre entier"
           />
           <span class="error-msg"
             >Saisissez un nombre entier</span
@@ -28,28 +30,31 @@
         </div>
 
         <div class="input-group">
+          <label for="altitude1">Altitude 2 (m)</label>
           <input
             autocomplete="off"
             id="altitude2"
-            placeholder="Altitude bas (m)"
+            placeholder="Saisissez un nombre entier"
           />
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
 
         <div class="input-group">
+          <label for="altitude1">Distance (m)</label>
           <input
             autocomplete="off"
             id="distance"
-            placeholder="Distance (m)"
+            placeholder="Saisissez un nombre entier"
           />
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
         <button type="submit">Calcul</button>
 
-        <div class="title-result">L'inclinaison de la pente est de</div>
-        <div class="result">
-            <span id="slope-percent" class="result">%</span> ou 
-            <span id="slope-degree" class="result">°</span>
+        <div class = "results">
+          <span class="title-results">Pente inclinée à </span> 
+          <span class="slope-percent"></span> 
+          <span class="title-results">ou</span> 
+          <span class="slope-degree"></span>
         </div>
 
     <script src="main.js"></script>

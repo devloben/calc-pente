@@ -9,16 +9,19 @@
 body {
   min-height: 100vh;
   font-family: "Work Sans", sans-serif;
+  /* font-family: Arial, Helvetica, sans-serif; */
   padding: clamp(20px, 5vw, 30px) 10px;
 }
 
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  padding: 5px;
+  max-width: 350px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
 }
+
 .container.shake {
     animation: shake 0.4s
 }
@@ -31,76 +34,71 @@ body {
     }
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  padding: 20px;
-  gap: 30px;
-  width: 320px;
-}
-
-.input-group input {
+h2 {
+  font-weight: 400;
   text-align: center;
-  width: 280px;
-  border: none;
-  height: 40px;
-  font-size: 1.2em;
-  border-radius: 5px;
-  box-shadow: rgba(0, 0, 0, 0.06) 0px 2px 4px 0px inset;
+  margin-bottom: 15px;
 }
 
-.input-group input:focus {
-  outline: none;
-}
-
-.btn-calcul-pente {
-  text-shadow: 2px 1px 3px rgba(0, 0, 0, 0.3);
-  color: #646464;
-  width: 100%;
-  border: none;
-  height: 40px;
-  font-size: 1.2em;
-  border-radius: 5px;
-  box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-  margin-top: -30px;
-}
-
-.btn-calcul-pente:first-of-type {
-  margin-top: 5px;
-  margin-bottom: 8px;
-}
-
-.btn-calcul-pente-ok {
-  background-color: rgb(217, 250, 217);
-}
-
-.error-msg {
-  color: crimson;
-  font-size: 0.8em;
-  margin-bottom: -10px;
-  display: none;
+h2 span {
+  font-weight: 600;
 }
 
 .input-group {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  margin-top: 20px;
 }
 
-/* #formulaire p {
-  color: red;
-  font-size: 1.2;
-  margin-top: 0;
-  margin-bottom: 0;
+.input-group label {
+  font-weight: 500;
+  font-size: 1.1em;
+}
+.input-group input {
+  font-size: 1em;
+  width: calc(100% - 20px);
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-.localisation {
-  display: flex;
-  gap: 20px;
+.input-group input:focus {
+  outline-color: rgba(18, 183, 180, .3);
+  box-shadow: 0 0 3px rgba(18, 183, 180, .3);
 }
-.altitude {
-  display: flex;
-  gap: 20px;
-} */
+
+.error-msg {
+  font-size: 0.8em;
+  color: crimson;
+  display: none;
+}
+
+form button {
+  font-size: 1.1em;
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(77, 176, 80);
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color .3s ease;
+  margin: 40px auto 20px;
+}
+
+form button:hover {
+  filter: brightness(0.9);
+}
+
+.results {
+  text-align: center;
+  font-style: oblique;
+  font-size: 1.1em;
+}
+
+.title-results {
+  display: none;
+}
+
+.slope-percent,
+.slope-degree{
+  font-weight: 600;  
+}
