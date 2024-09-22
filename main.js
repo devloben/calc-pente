@@ -5,6 +5,7 @@ const inputsValidity = {
 };
 
 // Validation du formulaire
+
 const container = document.querySelector(".container");
 const form = document.querySelector("form");
 form.addEventListener("submit", handleForm);
@@ -30,7 +31,7 @@ function handleForm(e) {
       showValidation({ index: index, validation: false });
     });
   } else {
-    showResults()
+    showResults();
   }
 }
 
@@ -39,21 +40,21 @@ function handleForm(e) {
 const titleResults = document.querySelectorAll(".title-results");
 const slopePercent = document.querySelector(".slope-percent");
 const slopeDegree = document.querySelector(".slope-degree");
-const glideRatio = document.querySelector(".glide-ratio")
+const glideRatio = document.querySelector(".glide-ratio");
 
-function showResults(){
-  titleResults[0].style.display = "inline"
-  slopePercent.textContent = `${calculateSlopePercent()}%`
-  titleResults[1].style.display = "inline"
-  slopeDegree.textContent = `${calculateSlopeDegree()}°`
-  titleResults[2].style.display = "inline"
-  titleResults[3].style.display = "inline"
-  glideRatio.textContent = `${calculateGlideRatio()}`
+function showResults() {
+  titleResults[0].style.display = "inline";
+  slopePercent.textContent = `${calculateSlopePercent()}%`;
+  titleResults[1].style.display = "inline";
+  slopeDegree.textContent = `${calculateSlopeDegree()}°`;
+  titleResults[2].style.display = "inline";
+  titleResults[3].style.display = "inline";
+  glideRatio.textContent = `${calculateGlideRatio()}`;
 }
 
 // Validation des champs
 
-const regEx = /^[1-9]\d*$/;
+const regEx = /^[0-9]\d*$/;
 const validationTexts = document.querySelectorAll(".error-msg");
 
 function showValidation({ index, validation }) {
@@ -115,9 +116,9 @@ function distanceValidation() {
 
 // Calcul de la pente
 
-function calculateDeltaAltitude(){
-  let altitude1 = parseInt(altitude1Input.value)
-  let altitude2 = parseInt(altitude2Input.value)
+function calculateDeltaAltitude() {
+  let altitude1 = parseInt(altitude1Input.value);
+  let altitude2 = parseInt(altitude2Input.value);
   let highAltitude = 0;
   let lowAltitude = 0;
   if (altitude1 > altitude2) {
@@ -129,33 +130,29 @@ function calculateDeltaAltitude(){
   }
 
   let deltaAltitude = highAltitude - lowAltitude;
-  return deltaAltitude
-
+  return deltaAltitude;
 }
 
 function calculateSlopePercent() {
-
   let deltaAltitude = calculateDeltaAltitude();
 
   let slopePercentResult = (deltaAltitude / distanceInput.value) * 100;
 
-  return slopePercentResult.toFixed(1)
+  return slopePercentResult.toFixed(1);
 }
 
 function calculateSlopeDegree() {
-
   let deltaAltitude = calculateDeltaAltitude();
 
   let slopeRadiansResult = Math.atan(deltaAltitude / distanceInput.value);
   let slopeDegreeResult = slopeRadiansResult * (180 / Math.PI);
 
-  return slopeDegreeResult.toFixed(1)
+  return slopeDegreeResult.toFixed(1);
 }
 
-function calculateGlideRatio(){
-
+function calculateGlideRatio() {
   let deltaAltitude = calculateDeltaAltitude();
-  let glideRatio = distanceInput.value / deltaAltitude
+  let glideRatio = distanceInput.value / deltaAltitude;
 
-  return glideRatio.toFixed(1)
+  return glideRatio.toFixed(1);
 }

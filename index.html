@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calcul de pente</title>
-    <link rel="stylesheet" href="styles.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet">
   </head>
+  
   <body>
     <div class="container">
       <h2>Inclinaison d'une <span>pente</span></h2>
@@ -22,11 +22,8 @@
           <input
             autocomplete="off"
             id="altitude1"
-            placeholder="Saisissez un nombre entier"
-          />
-          <span class="error-msg"
-            >Saisissez un nombre entier</span
-          >
+            placeholder="Saisissez un nombre entier">
+          <span class="error-msg">Saisissez un nombre entier</span>
         </div>
 
         <div class="input-group">
@@ -34,8 +31,7 @@
           <input
             autocomplete="off"
             id="altitude2"
-            placeholder="Saisissez un nombre entier"
-          />
+            placeholder="Saisissez un nombre entier">
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
 
@@ -44,22 +40,23 @@
           <input
             autocomplete="off"
             id="distance"
-            placeholder="Saisissez un nombre entier"
-          />
+            placeholder="Saisissez un nombre entier">
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
         <button type="submit">Calcul</button>
+      </form>
 
-        <div class = "results">
-          <span class="title-results">Pente inclinée à </span> 
-          <span class="slope-percent"></span> 
-          <span class="title-results">ou</span> 
-          <span class="slope-degree"></span>
+      <div class="results">
+        <span class="title-results">Pente inclinée à </span>
+        <span class="slope-percent"></span>
+        <span class="title-results">ou</span>
+        <span class="slope-degree"></span>
         <br>
-          <span class="title-results">🪂 </span>
-          <span class="title-results">Finesse</span>
-          <span class="glide-ratio"></span>
-        </div>
+        <span class="title-results">🪂 </span>
+        <span class="title-results">Finesse</span>
+        <span class="glide-ratio"></span>
+      </div>
+    </div>
 
     <script src="main.js"></script>
   </body>
