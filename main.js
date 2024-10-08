@@ -38,19 +38,23 @@ function handleForm(e) {
 
 // Affichage du résultat
 
+const results = document.querySelector(".results")
 const titleResults = document.querySelectorAll(".title-results");
 const slopePercent = document.querySelector(".slope-percent");
 const slopeDegree = document.querySelector(".slope-degree");
 const glideRatio = document.querySelector(".glide-ratio");
+const canvasContainer = document.querySelector(".canvas-container")
 
 function showResults() {
-  titleResults[0].style.display = "inline";
+    titleResults[0].style.display = "inline";
   slopePercent.textContent = `${calculateSlopePercent()}%`;
   titleResults[1].style.display = "inline";
   slopeDegree.textContent = `${calculateSlopeDegree()}°`;
   titleResults[2].style.display = "inline";
   titleResults[3].style.display = "inline";
   glideRatio.textContent = `${calculateGlideRatio()}`;
+  canvasContainer.style.display = "block"
+  results.classList.add("visible")
 }
 
 // Validation des champs
@@ -180,7 +184,7 @@ function drawSlope() {
     context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
   }
 
-  context.strokeStyle = "orange"; // Couleur de la ligne
+  context.strokeStyle = "rgb(77, 176, 80)"; // Couleur de la ligne
   context.lineWidth = 3; // Épaisseur de la ligne
   context.stroke();
 }
