@@ -46,7 +46,7 @@ const glideRatio = document.querySelector(".glide-ratio");
 const canvasContainer = document.querySelector(".canvas-container")
 
 function showResults() {
-    titleResults[0].style.display = "inline";
+  titleResults[0].style.display = "inline";
   slopePercent.textContent = `${calculateSlopePercent()}%`;
   titleResults[1].style.display = "inline";
   slopeDegree.textContent = `${calculateSlopeDegree()}°`;
@@ -172,19 +172,18 @@ function drawSlope() {
   let slopeLength = [0, distanceInput.value]; // X
   let slopeHeight = [0, calculateDeltaAltitude()]; // Y
 
-  console.log(`Distance : ${slopeLength[1]} - Altitude : ${slopeHeight[1]}`);
-
   context.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas
 
   context.beginPath();
   context.moveTo(slopeLength[0], canvas.height - slopeHeight[0]); // Point de départ (X0, Y0)
 
-  // Dessiner les lignes entre les points
-  for (let i = 1; i < slopeLength.length; i++) {
-    context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
-  }
+  // Dessiner les lignes entre les points (boucle si plus de 2 points)
+  // for (let i = 1; i < slopeLength.length; i++) {
+  //   context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
+  // }
+  context.lineTo(slopeLength[1], canvas.height - slopeHeight[1])
 
   context.strokeStyle = "rgb(77, 176, 80)"; // Couleur de la ligne
-  context.lineWidth = 3; // Épaisseur de la ligne
+  context.lineWidth = 2; // Épaisseur de la ligne
   context.stroke();
 }
