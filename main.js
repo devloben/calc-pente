@@ -32,6 +32,7 @@ function handleForm(e) {
     });
   } else {
     showResults();
+    drawSlope();
   }
 }
 
@@ -155,4 +156,31 @@ function calculateGlideRatio() {
   let glideRatio = distanceInput.value / deltaAltitude;
 
   return glideRatio.toFixed(1);
+}
+
+// Graphique
+
+const canvas = document.getElementById("graphCanvas");
+const context = canvas.getContext("2d");
+
+// Fonction pour dessiner la pente
+function drawSlope() {
+  let slopeLength = [0, distanceInput.value]; // X
+  let slopeHeight = [0, calculateDeltaAltitude()]; // Y
+
+  console.log(`Distance : ${slopeLength[1]} - Altitude : ${slopeHeight[1]}`);
+
+  context.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas
+
+  context.beginPath();
+  context.moveTo(slopeLength[0], canvas.height - slopeHeight[0]); // Point de départ (X0, Y0)
+
+  // Dessiner les lignes entre les points
+  for (let i = 1; i < slopeLength.length; i++) {
+    context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
+  }
+
+  context.strokeStyle = "orange"; // Couleur de la ligne
+  context.lineWidth = 3; // Épaisseur de la ligne
+  context.stroke();
 }

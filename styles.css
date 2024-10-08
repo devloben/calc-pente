@@ -19,20 +19,20 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .container.shake {
-    animation: shake 0.4s
+  animation: shake 0.4s;
 }
 
 @keyframes shake {
-    33% {
-        transform: translateX(-5px)
-    }
-    66% {
-        transform: translateX(5px)
-    }
+  33% {
+    transform: translateX(-5px);
+  }
+  66% {
+    transform: translateX(5px);
+  }
 }
 
 h2 {
@@ -63,8 +63,8 @@ h2 span {
 }
 
 .input-group input:focus {
-  outline-color: rgba(18, 183, 180, .3);
-  box-shadow: 0 0 3px rgba(18, 183, 180, .3);
+  outline-color: rgba(18, 183, 180, 0.3);
+  box-shadow: 0 0 3px rgba(18, 183, 180, 0.3);
 }
 
 .error-msg {
@@ -82,7 +82,7 @@ form button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
   margin: 40px auto 20px;
 }
 
@@ -103,5 +103,13 @@ form button:hover {
 .slope-percent,
 .slope-degree,
 .glide-ratio {
-  font-weight: 600;  
+  font-weight: 600;
+}
+
+/* Graphique*/
+
+#graphCanvas {
+  display: block;
+  margin: 0 auto;
+  border-radius: 5px;
 }
