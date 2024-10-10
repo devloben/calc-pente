@@ -178,12 +178,23 @@ function drawSlope(){
 
   const canvas = document.querySelector('#slope-chart');
   const maxWidth = 200;
+  const maxHeight = 300
+  
   const ratio = slopeHeight / slopeLength;
   
-  const canvasHeight = maxWidth * ratio
+   // Calculer la hauteur du canvas en fonction du ratio et de la limite de hauteur maximale
+  let canvasHeight = maxWidth * ratio
+  let canvasWidth = maxWidth
 
-  canvas.width = maxWidth
-  canvas.height = canvasHeight
+   // Si la hauteur calculée dépasse maxHeight, réduire les dimensions à l'échelle
+   if (canvasHeight > maxHeight) {
+    canvasHeight = maxHeight;
+    canvasWidth = maxHeight / ratio // Ajuster la largeur pour maintenir l'échelle
+  }
+
+  // Définir les dimensions du canvas
+  canvas.width = canvasWidth;  // Ajustement dynamique de la largeur
+  canvas.height = canvasHeight; // Ajustement dynamique de la hauteur
   
   const data = {
     labels: ["A", "B"],
