@@ -77,7 +77,7 @@ form button {
   font-size: 1.1em;
   width: 100%;
   padding: 10px;
-  background-color: rgb(77, 176, 80);
+  background-color: #4db050;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -115,14 +115,15 @@ form button:hover {
   font-weight: 600;  
 }
 
-/* Graphique*/
+/* Graphique */
 
-.canvas-container{
+.chart-container{
   display: none;
   margin-top: 10px;
+  margin-bottom: 10px;
 }
 
-#graphCanvas{
+#slope-chart{
   display: block;
   margin: 0 auto;
   border-radius: 5px;

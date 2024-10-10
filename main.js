@@ -43,7 +43,7 @@ const titleResults = document.querySelectorAll(".title-results");
 const slopePercent = document.querySelector(".slope-percent");
 const slopeDegree = document.querySelector(".slope-degree");
 const glideRatio = document.querySelector(".glide-ratio");
-const canvasContainer = document.querySelector(".canvas-container")
+const canvasContainer = document.querySelector(".chart-container")
 
 function showResults() {
   titleResults[0].style.display = "inline";
@@ -162,28 +162,110 @@ function calculateGlideRatio() {
   return glideRatio.toFixed(1);
 }
 
-// Graphique
+// Graphique avec Chart
 
-const canvas = document.getElementById("graphCanvas");
-const context = canvas.getContext("2d");
+let chartIntance = null
 
-// Fonction pour dessiner la pente
-function drawSlope() {
-  let slopeLength = [0, distanceInput.value]; // X
-  let slopeHeight = [0, calculateDeltaAltitude()]; // Y
+function drawSlope(){
+  
+  // Suppression du graphique avant d'en créer un nouveau
+  if(chartIntance !== null){
+    chartIntance.destroy()
+  }
 
-  context.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas
+  let slopeLength = parseInt(distanceInput.value); // X
+  let slopeHeight = parseInt(calculateDeltaAltitude()); // Y
 
-  context.beginPath();
-  context.moveTo(slopeLength[0], canvas.height - slopeHeight[0]); // Point de départ (X0, Y0)
+  const canvas = document.querySelector('#slope-chart');
+  const maxWidth = 200;
+  const ratio = slopeHeight / slopeLength;
+  
+  const canvasHeight = maxWidth * ratio
 
-  // Dessiner les lignes entre les points (boucle si plus de 2 points)
-  // for (let i = 1; i < slopeLength.length; i++) {
-  //   context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
-  // }
-  context.lineTo(slopeLength[1], canvas.height - slopeHeight[1])
+  canvas.width = maxWidth
+  canvas.height = canvasHeight
+  
+  const data = {
+    labels: ["A", "B"],
+    datasets: [{
+      //label: "Pente",
+      data: [0, slopeHeight],
+      borderColor: "#4db050", 
+      fill: false,
+      borderWidth: 2
+    }]
+  }
 
-  context.strokeStyle = "rgb(77, 176, 80)"; // Couleur de la ligne
-  context.lineWidth = 2; // Épaisseur de la ligne
-  context.stroke();
+  const config = {
+    type: "line",
+    data: data,
+    options: {
+      plugins: {
+        legend: {
+          display: false
+        }
+      },
+      scales: {
+        x: {
+          min: 0,
+          max: slopeLength,
+          title: {
+            display: false,
+            //text: "Distance",
+          },
+          ticks: {
+            // callback: function(value, index, values) {
+            //   return index === 0 ? "0 m" : slopeLength + " m"
+            // }
+            display: false
+          }
+        },
+        y: {
+          min: 0,
+          max: slopeHeight,
+          beginAtZero: true, 
+          title: {
+            display: false,
+            //text: "Hauteur (m)"
+          }, 
+          ticks: {
+            display: false
+          }
+        }
+        
+      },
+      maintainAspectRatio: false,
+      responsive: false
+    }
+  }
+
+  const ctx = canvas.getContext("2d")
+  chartIntance = new Chart(ctx, config)
+
 }
+
+// // Graphique avec Canvas
+
+// const canvas = document.getElementById("graphCanvas");
+// const context = canvas.getContext("2d");
+
+// // Fonction pour dessiner la pente
+// function drawSlope() {
+//   let slopeLength = [0, distanceInput.value]; // X
+//   let slopeHeight = [0, calculateDeltaAltitude()]; // Y
+
+//   context.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas
+
+//   context.beginPath();
+//   context.moveTo(slopeLength[0], canvas.height - slopeHeight[0]); // Point de départ (X0, Y0)
+
+//   // Dessiner les lignes entre les points (boucle si plus de 2 points)
+//   // for (let i = 1; i < slopeLength.length; i++) {
+//   //   context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
+//   // }
+//   context.lineTo(slopeLength[1], canvas.height - slopeHeight[1])
+
+   //context.strokeStyle = "rgb(77, 176, 80)"; // Couleur de la ligne
+//   context.lineWidth = 2; // Épaisseur de la ligne
+//   context.stroke();
+// }
