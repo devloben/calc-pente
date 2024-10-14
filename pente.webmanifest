@@ -1,5 +1,7 @@
 {
- "name": "Quelle pente ?",
+ "name": "Quelle pente ? PWA",
+ "short_name": "Quelle pente ?",
+ "description": "Outil donnant une pente en pourcentage, degrée et graphique à partir d'une hauteur et d'une distance.",
  "icons": [
   {
    "src": "ressources/icons/android-icon-36x36.png",
@@ -43,6 +45,22 @@
   "type": "image/png",
   "density": "5.0"
   }
-  
+ ],
+ "start_url": "index.html",
+ "display": "fullscreen",
+ "theme_color": "#f1f1f1",
+ "background_color": "#f1f1f1",
+ "screenshots": [
+   {
+      "src": "ressources/img/screenshot.png",
+      "sizes": "370x525",
+      "type": "image/png",
+      "form_factor": "wide"
+   },
+   {
+      "src": "ressources/img/screenshot.png",
+      "sizes": "370x525",
+      "type": "image/png"
+   }
  ]
 }

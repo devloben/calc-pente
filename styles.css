@@ -1,3 +1,11 @@
+@font-face {
+  font-family: 'Work Sans';
+  src: url('ressources/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf') format('truetype');
+  font-weight: 100 900; /* Spécifie la plage de poids de la police variable */
+  font-style: normal;
+  font-optical-sizing: auto;
+}
+
 *,
 ::before,
 ::after {

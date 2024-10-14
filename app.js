@@ -1,6 +1,6 @@
 // Registering Service Worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/dev/pente/sw.js');
+  navigator.serviceWorker.register('sw.js');
 }
 
 const inputsValidity = {
