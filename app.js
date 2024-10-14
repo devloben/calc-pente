@@ -1,3 +1,8 @@
+// Registering Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/dev/pente/sw.js');
+}
+
 const inputsValidity = {
   altitude1: false,
   altitude2: false,
