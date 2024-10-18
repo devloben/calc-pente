@@ -1,37 +1,37 @@
 // Enregistrer le Service Worker
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js').then(() => {
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("sw.js").then(() => {
     console.log("Service Worker enregistré");
   });
 }
 
-const version = "CalC Pente 1.0.0 - 18/10/2024"
+const version = "CalC Pente 1.0.1 - 18/10/2024";
 
 // Affiche la version de la PWA
 const notificationsBtn = document.getElementById("version");
-const initialText = notificationsBtn.textContent
-let cacheName
-let timeoutId
+const initialText = notificationsBtn.textContent;
+let cacheName;
+let timeoutId;
 
-notificationsBtn.addEventListener("click", () =>{
-  if(notificationsBtn.textContent === initialText){
-    notificationsBtn.textContent = version
+notificationsBtn.addEventListener("click", () => {
+  if (notificationsBtn.textContent === initialText) {
+    notificationsBtn.textContent = version;
 
     if (timeoutId) {
-      clearTimeout(timeoutId)
+      clearTimeout(timeoutId);
     }
 
     timeoutId = setTimeout(() => {
-      notificationsBtn.textContent = initialText
-    }, 3000)
+      notificationsBtn.textContent = initialText;
+    }, 3000);
   } else {
-    notificationsBtn.textContent = initialText
-    
+    notificationsBtn.textContent = initialText;
+
     if (timeoutId) {
-      clearTimeout(timeoutId)
+      clearTimeout(timeoutId);
     }
   }
-})
+});
 
 // Gestion du calcul de pente
 
