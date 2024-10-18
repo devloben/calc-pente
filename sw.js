@@ -1,5 +1,5 @@
 // Files to cache
-const cacheName = "calc-pente-v0";
+const cacheName = "calc-pente-1.0.0";
 const appShellFiles = [
   "index.html",
   "app.js",

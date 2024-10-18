@@ -5,7 +5,7 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-const version = "CalC Pente v01 - 18/10/2024"
+const version = "CalC Pente 1.0.0 - 18/10/2024"
 
 // Affiche la version de la PWA
 const notificationsBtn = document.getElementById("notifications");
