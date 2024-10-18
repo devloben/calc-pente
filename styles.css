@@ -138,3 +138,14 @@ form button:hover {
   margin: 0 auto;
   border-radius: 5px;
 }
+
+#notifications {
+  width: 100%;
+  margin-top: 20px;
+  border: none;
+  color: blue;
+  cursor: pointer;
+  font-family: "Work Sans", sans-serif;
+  font-size: 12px;
+  background-color: transparent; 
+}

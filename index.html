@@ -1,68 +1,143 @@
 <!DOCTYPE html>
 <html lang="fr">
   <head>
-    <meta charset="UTF-8">
-    <title>Quelle pente ?</title>
-    <meta name="description" content="Outil donnant une pente en pourcentage, degrée et graphique à partir d'une hauteur et d'une distance.">
-    <meta name="author" content="WebDevArt">
-    <meta name="theme-color" content="#ff1f1f1">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="UTF-8" />
+    <title>CalC Pente</title>
+    <meta
+      name="description"
+      content="Outil donnant une pente en pourcentage, degrée et graphique à partir d'une hauteur et d'une distance."
+    />
+    <meta name="author" content="WebDevArt" />
+    <meta name="theme-color" content="#ff1f1f1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
-    <link rel="stylesheet" href="styles.css">
-    <link rel="manifest" href="pente.webmanifest">
-  
-      
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="manifest" href="pente.webmanifest" />
+
     <!-- Icones -->
-      <!-- Favicons pour navigateurs -->
-      <link rel="icon" type="image/x-icon" href="ressources/icons/favicon.ico">
-      <link rel="icon" type="image/png" sizes="16x16" href="ressources/icons/favicon-16x16.png">
-      <link rel="icon" type="image/png" sizes="32x32" href="ressources/icons/favicon-32x32.png">
-      <link rel="icon" type="image/png" sizes="96x96" href="ressources/icons/favicon-96x96.png">
-      <link rel="icon" type="image/png" sizes="256x256" href="ressources/icons/favicon-256x256.png">
+    <!-- Favicons pour navigateurs -->
+    <link rel="icon" type="image/x-icon" href="ressources/icons/favicon.ico" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="ressources/icons/favicon-16x16.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="ressources/icons/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="96x96"
+      href="ressources/icons/favicon-96x96.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="256x256"
+      href="ressources/icons/favicon-256x256.png"
+    />
 
-      <!-- Icones Apple IOS -->
-      <link rel="apple-touch-icon" sizes="57x57" href="ressources/icons/apple-icon-57x57.png">
-      <link rel="apple-touch-icon" sizes="60x60" href="ressources/icons/apple-icon-60x60.png">
-      <link rel="apple-touch-icon" sizes="72x72" href="ressources/icons/apple-icon-72x72.png">
-      <link rel="apple-touch-icon" sizes="76x76" href="ressources/icons/apple-icon-76x76.png">
-      <link rel="apple-touch-icon" sizes="114x114" href="ressources/icons/apple-icon-114x114.png">
-      <link rel="apple-touch-icon" sizes="120x120" href="ressources/icons/apple-icon-120x120.png">
-      <link rel="apple-touch-icon" sizes="144x144" href="ressources/icons/apple-icon-144x144.png">
-      <link rel="apple-touch-icon" sizes="152x152" href="ressources/icons/apple-icon-152x152.png">
-      <link rel="apple-touch-icon" sizes="180x180" href="ressources/icons/apple-icon-180x180.png">
+    <!-- Icones Apple IOS -->
+    <link
+      rel="apple-touch-icon"
+      sizes="57x57"
+      href="ressources/icons/apple-icon-57x57.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="60x60"
+      href="ressources/icons/apple-icon-60x60.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="72x72"
+      href="ressources/icons/apple-icon-72x72.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="76x76"
+      href="ressources/icons/apple-icon-76x76.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="114x114"
+      href="ressources/icons/apple-icon-114x114.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="120x120"
+      href="ressources/icons/apple-icon-120x120.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="144x144"
+      href="ressources/icons/apple-icon-144x144.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="152x152"
+      href="ressources/icons/apple-icon-152x152.png"
+    />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="ressources/icons/apple-icon-180x180.png"
+    />
 
-      <!-- Icones Microsoft (Edge, IE) -->
-      <meta name="msapplication-TileColor" content="#f1f1f1">
-      <meta name="msapplication-square70x70logo" content="ressources/icons/ms-icon-70x70.png">
-      <meta name="msapplication-TileImage" content="ressources/icons/ms-icon-144x144.png">
-      <meta name="msapplication-square150x150logo" content="ressources/icons/ms-icon-150x150.png">
-      <meta name="msapplication-square310x310logo" content="ressources/icons/ms-icon-310x310.png">
-          
-      
+    <!-- Icones Microsoft (Edge, IE) -->
+    <meta name="msapplication-TileColor" content="#f1f1f1" />
+    <meta
+      name="msapplication-square70x70logo"
+      content="ressources/icons/ms-icon-70x70.png"
+    />
+    <meta
+      name="msapplication-TileImage"
+      content="ressources/icons/ms-icon-144x144.png"
+    />
+    <meta
+      name="msapplication-square150x150logo"
+      content="ressources/icons/ms-icon-150x150.png"
+    />
+    <meta
+      name="msapplication-square310x310logo"
+      content="ressources/icons/ms-icon-310x310.png"
+    />
+
     <!-- Open Graph -->
-    <meta property="og:title" content="Quelle pente ?">
-    <meta property="og:description" content="Outil donnant une pente en pourcentage, degrée et graphique à partir d'une hauteur et d'une distance.">
-    <meta property="og:url" content="https://webdevart.fr/dev/pente">
-    <meta property="og:image" content="ressources/icons/android-icon-512x512.png">
-    <meta property="og:type" content="website">
-    <meta property="og:site_name" content="Quelle pente ?">
-    <meta property="og:locale" content="fr_FR">
-    
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <meta property="og:title" content="Pente" />
+    <meta
+      property="og:description"
+      content="Outil donnant une pente en pourcentage, degrée et graphique à partir d'une hauteur et d'une distance."
+    />
+    <meta property="og:url" content="https://webdevart.fr/dev/pente" />
+    <meta
+      property="og:image"
+      content="ressources/icons/android-icon-512x512.png"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Pente" />
+    <meta property="og:locale" content="fr_FR" />
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   </head>
-  
+
   <body>
     <div class="container">
-      <h2>Quelle <span>pente</span> ?</h2>
+      <h2><span>CalC Pente</span></h2>
       <form>
         <div class="input-group">
           <label for="altitude1">Altitude 1 (m)</label>
           <input
             autocomplete="off"
             id="altitude1"
-            placeholder="Saisissez un nombre entier">
+            placeholder="Saisissez un nombre entier"
+          />
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
 
@@ -71,7 +146,8 @@
           <input
             autocomplete="off"
             id="altitude2"
-            placeholder="Saisissez un nombre entier">
+            placeholder="Saisissez un nombre entier"
+          />
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
 
@@ -80,10 +156,11 @@
           <input
             autocomplete="off"
             id="distance"
-            placeholder="Saisissez un nombre entier">
+            placeholder="Saisissez un nombre entier"
+          />
           <span class="error-msg">Saisissez un nombre entier</span>
         </div>
-        <button type="submit">Calcul</button>
+        <button type="submit">CalC</button>
       </form>
 
       <div class="results">
@@ -91,8 +168,8 @@
         <span class="slope-percent"></span>
         <span class="title-results">ou</span>
         <span class="slope-degree"></span>
-        <br>
-        
+        <br />
+
         <div class="chart-container">
           <canvas id="slope-chart" width="200" height="200"></canvas>
         </div>
@@ -100,7 +177,9 @@
         <span class="title-results">Finesse</span>
         <span class="glide-ratio"></span>
       </div>
-    </div>
+      
+        <button id="notifications">Info version !</button>
+      </div>
 
 
     <script src="app.js"></script>

@@ -1,7 +1,39 @@
-// Registering Service Worker
+// Enregistrer le Service Worker
 if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('sw.js');
+  navigator.serviceWorker.register('sw.js').then(() => {
+    console.log("Service Worker enregistré");
+  });
 }
+
+const version = "CalC Pente v01 - 18/10/2024"
+
+// Affiche la version de la PWA
+const notificationsBtn = document.getElementById("notifications");
+const initialText = notificationsBtn.textContent
+let cacheName
+let timeoutId
+
+notificationsBtn.addEventListener("click", () =>{
+  if(notificationsBtn.textContent === initialText){
+    notificationsBtn.textContent = version
+
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+
+    timeoutId = setTimeout(() => {
+      notificationsBtn.textContent = initialText
+    }, 3000)
+  } else {
+    notificationsBtn.textContent = initialText
+    
+    if (timeoutId) {
+      clearTimeout(timeoutId)
+    }
+  }
+})
+
+// Gestion du calcul de pente
 
 const inputsValidity = {
   altitude1: false,
@@ -43,12 +75,12 @@ function handleForm(e) {
 
 // Affichage du résultat
 
-const results = document.querySelector(".results")
+const results = document.querySelector(".results");
 const titleResults = document.querySelectorAll(".title-results");
 const slopePercent = document.querySelector(".slope-percent");
 const slopeDegree = document.querySelector(".slope-degree");
 const glideRatio = document.querySelector(".glide-ratio");
-const canvasContainer = document.querySelector(".chart-container")
+const canvasContainer = document.querySelector(".chart-container");
 
 function showResults() {
   titleResults[0].style.display = "inline";
@@ -58,8 +90,8 @@ function showResults() {
   titleResults[2].style.display = "inline";
   titleResults[3].style.display = "inline";
   glideRatio.textContent = `${calculateGlideRatio()}`;
-  canvasContainer.style.display = "block"
-  results.classList.add("visible")
+  canvasContainer.style.display = "block";
+  results.classList.add("visible");
 }
 
 // Validation des champs
@@ -169,48 +201,49 @@ function calculateGlideRatio() {
 
 // Graphique avec Chart
 
-let chartIntance = null
+let chartIntance = null;
 
-function drawSlope(){
-  
+function drawSlope() {
   // Suppression du graphique avant d'en créer un nouveau
-  if(chartIntance !== null){
-    chartIntance.destroy()
+  if (chartIntance !== null) {
+    chartIntance.destroy();
   }
 
   let slopeLength = parseInt(distanceInput.value); // X
   let slopeHeight = parseInt(calculateDeltaAltitude()); // Y
 
-  const canvas = document.querySelector('#slope-chart');
+  const canvas = document.querySelector("#slope-chart");
   const maxWidth = 200;
-  const maxHeight = 300
-  
-  const ratio = slopeHeight / slopeLength;
-  
-   // Calculer la hauteur du canvas en fonction du ratio et de la limite de hauteur maximale
-  let canvasHeight = maxWidth * ratio
-  let canvasWidth = maxWidth
+  const maxHeight = 300;
 
-   // Si la hauteur calculée dépasse maxHeight, réduire les dimensions à l'échelle
-   if (canvasHeight > maxHeight) {
+  const ratio = slopeHeight / slopeLength;
+
+  // Calculer la hauteur du canvas en fonction du ratio et de la limite de hauteur maximale
+  let canvasHeight = maxWidth * ratio;
+  let canvasWidth = maxWidth;
+
+  // Si la hauteur calculée dépasse maxHeight, réduire les dimensions à l'échelle
+  if (canvasHeight > maxHeight) {
     canvasHeight = maxHeight;
-    canvasWidth = maxHeight / ratio // Ajuster la largeur pour maintenir l'échelle
+    canvasWidth = maxHeight / ratio; // Ajuster la largeur pour maintenir l'échelle
   }
 
   // Définir les dimensions du canvas
-  canvas.width = canvasWidth;  // Ajustement dynamique de la largeur
+  canvas.width = canvasWidth; // Ajustement dynamique de la largeur
   canvas.height = canvasHeight; // Ajustement dynamique de la hauteur
-  
+
   const data = {
     labels: ["A", "B"],
-    datasets: [{
-      //label: "Pente",
-      data: [0, slopeHeight],
-      borderColor: "#4db050", 
-      fill: false,
-      borderWidth: 2
-    }]
-  }
+    datasets: [
+      {
+        //label: "Pente",
+        data: [0, slopeHeight],
+        borderColor: "#4db050",
+        fill: false,
+        borderWidth: 2,
+      },
+    ],
+  };
 
   const config = {
     type: "line",
@@ -218,8 +251,8 @@ function drawSlope(){
     options: {
       plugins: {
         legend: {
-          display: false
-        }
+          display: false,
+        },
       },
       scales: {
         x: {
@@ -233,55 +266,27 @@ function drawSlope(){
             // callback: function(value, index, values) {
             //   return index === 0 ? "0 m" : slopeLength + " m"
             // }
-            display: false
-          }
+            display: false,
+          },
         },
         y: {
           min: 0,
           max: slopeHeight,
-          beginAtZero: true, 
+          beginAtZero: true,
           title: {
             display: false,
             //text: "Hauteur (m)"
-          }, 
+          },
           ticks: {
-            display: false
-          }
-        }
-        
+            display: false,
+          },
+        },
       },
       maintainAspectRatio: false,
-      responsive: false
-    }
-  }
+      responsive: false,
+    },
+  };
 
-  const ctx = canvas.getContext("2d")
-  chartIntance = new Chart(ctx, config)
-
+  const ctx = canvas.getContext("2d");
+  chartIntance = new Chart(ctx, config);
 }
-
-// // Graphique avec Canvas
-
-// const canvas = document.getElementById("graphCanvas");
-// const context = canvas.getContext("2d");
-
-// // Fonction pour dessiner la pente
-// function drawSlope() {
-//   let slopeLength = [0, distanceInput.value]; // X
-//   let slopeHeight = [0, calculateDeltaAltitude()]; // Y
-
-//   context.clearRect(0, 0, canvas.width, canvas.height); // Efface le canvas
-
-//   context.beginPath();
-//   context.moveTo(slopeLength[0], canvas.height - slopeHeight[0]); // Point de départ (X0, Y0)
-
-//   // Dessiner les lignes entre les points (boucle si plus de 2 points)
-//   // for (let i = 1; i < slopeLength.length; i++) {
-//   //   context.lineTo(slopeLength[i], canvas.height - slopeHeight[i]);
-//   // }
-//   context.lineTo(slopeLength[1], canvas.height - slopeHeight[1])
-
-   //context.strokeStyle = "rgb(77, 176, 80)"; // Couleur de la ligne
-//   context.lineWidth = 2; // Épaisseur de la ligne
-//   context.stroke();
-// }
