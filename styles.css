@@ -149,9 +149,6 @@ form button:hover {
   font-family: "Work Sans", sans-serif;
   font-size: 12px;
   background-color: transparent;
+  -webkit-tap-highlight-color: transparent; /* Désactive l'effet de surbrillance bleu sur mobile */
 }
 
-#version:focus {
-  outline: none;
-  background-color: transparent;
-}
