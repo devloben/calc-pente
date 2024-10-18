@@ -1,6 +1,7 @@
 @font-face {
-  font-family: 'Work Sans';
-  src: url('ressources/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf') format('truetype');
+  font-family: "Work Sans";
+  src: url("ressources/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf")
+    format("truetype");
   font-weight: 100 900; /* Spécifie la plage de poids de la police variable */
   font-style: normal;
   font-optical-sizing: auto;
@@ -29,20 +30,20 @@ body {
   border: 1px solid #ccc;
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, .1);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .container.shake {
-    animation: shake 0.4s
+  animation: shake 0.4s;
 }
 
 @keyframes shake {
-    33% {
-        transform: translateX(-5px)
-    }
-    66% {
-        transform: translateX(5px)
-    }
+  33% {
+    transform: translateX(-5px);
+  }
+  66% {
+    transform: translateX(5px);
+  }
 }
 
 h2 {
@@ -73,8 +74,8 @@ h2 span {
 }
 
 .input-group input:focus {
-  outline-color: rgba(18, 183, 180, .3);
-  box-shadow: 0 0 3px rgba(18, 183, 180, .3);
+  outline-color: rgba(18, 183, 180, 0.3);
+  box-shadow: 0 0 3px rgba(18, 183, 180, 0.3);
 }
 
 .error-msg {
@@ -92,20 +93,13 @@ form button {
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color .3s ease;
+  transition: background-color 0.3s ease;
   margin: 40px auto 20px;
 }
 
 form button:hover {
   filter: brightness(0.9);
 }
-
-form button:focus {
-  outline: none;
-  background-color: transparent;
-}
-
-
 
 .results {
   text-align: center;
@@ -116,7 +110,7 @@ form button:focus {
   transition: opacity 1s ease, visibility 0s 1s;
 }
 
-.results.visible{
+.results.visible {
   opacity: 1;
   visibility: visible;
   transition: opacity 1s ease, visibility 0s;
@@ -129,24 +123,24 @@ form button:focus {
 .slope-percent,
 .slope-degree,
 .glide-ratio {
-  font-weight: 600;  
+  font-weight: 600;
 }
 
 /* Graphique */
 
-.chart-container{
+.chart-container {
   display: none;
   margin-top: 10px;
   margin-bottom: 10px;
 }
 
-#slope-chart{
+#slope-chart {
   display: block;
   margin: 0 auto;
   border-radius: 5px;
 }
 
-#notifications {
+#version {
   width: 100%;
   margin-top: 20px;
   border: none;
@@ -154,5 +148,10 @@ form button:focus {
   cursor: pointer;
   font-family: "Work Sans", sans-serif;
   font-size: 12px;
-  background-color: transparent; 
+  background-color: transparent;
+}
+
+#version:focus {
+  outline: none;
+  background-color: transparent;
 }

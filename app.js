@@ -8,7 +8,7 @@ if ('serviceWorker' in navigator) {
 const version = "CalC Pente 1.0.0 - 18/10/2024"
 
 // Affiche la version de la PWA
-const notificationsBtn = document.getElementById("notifications");
+const notificationsBtn = document.getElementById("version");
 const initialText = notificationsBtn.textContent
 let cacheName
 let timeoutId
